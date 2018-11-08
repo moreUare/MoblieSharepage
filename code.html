@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr = ['all',1,2,3]
+        console.log(...arr);
+
+        var arr2 = arr;
+        var arr3 = [...arr];
+        console.log(arr === arr2);
+        console.log(arr === arr3);
+
+        var arr4 = [...arr, 4, 5, 6];
+        console.log(arr4);
+
+        var str = 'love';
+        var arr5 = [...str]
+        console.log(arr5);
+
+        var bar = function(...arg){
+            console.log(arg);
+        }
+        bar(1,2,3,4);
+
+        let s = Symbol();
+        console.log(typeof(s));  
+
+        const log = {};
+        log.levels = {
+            DEBUG: Symbol('debug'),
+            INFO: Symbol('info'),
+            WARN: Symbol('warn')
+        }
+        console.log(log.levels.DEBUG,'debug message');
+        console.log(log.levels.INFO,'info message')
+
+
+        let s1 = Symbol("foo");
+        let s2 = Symbol("foo");
+        let s3 = Symbol.for("foo");
+        let s4 = Symbol.for("foo");
+
+        console.log(s1 === s3);
+        console.log(s2 === s3);
+        console.log(s3 === s4);
+
+        class MyClass{
+            [Symbol.hasInstance](foo){
+                return foo instanceof Array;
+            }
+        }
+        [1,2,3] instanceof new MyClass();
+
+
+        var t = [9,1,1,2,0]
+        t.reduce((acc,curr)=>{
+            console.log(acc);
+            console.log(curr)
+        },0)
+
+        let set = new Set([1,2,2,4,4,6,9,8])
+        console.log(set);
+
+        var dedupe = (array) => {
+            return Array.from(new Set(array));
+        }
+        var arr = [1,1,2,2,3,3,4,5,6,6,7,8,8];
+        arr = dedupe(arr);
+        console.log(arr);
+
+        const promise = new Promise(function(){
+    
+        });
+        console.log(promise);
+
+    </script>
+</head>
+<body>
+    <br>
+</body>
+</html>
