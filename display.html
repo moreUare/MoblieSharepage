@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>inline-table</title>
+	<style>
+		.container{
+			width: 320px;
+			height: 100px;
+			background: lightblue;
+		}
+		.box{
+			width: 100%;
+			display: table;
+		}
+		.child{
+			display: table-cell;
+			width: 80px;
+			height: 100px;
+		}
+		.child_f{
+			text-align: left;
+		}
+		.child_s{
+			text-align: right;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="child child_f">第一个</div>
+			<div class="child child_s">第二个</div>
+		</div>
+		<table>
+			<tr>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
