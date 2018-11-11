@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>苏州玻索物联科技有限公司</title>
+    <meta name="description" content="玻索物联是一家集智能硬件研发、软件研发、产品销售为一体的智能化解决方案提供商。公司主要从事卫星定位技术，物联网技术，移动互联网技术在医疗养老和公共行业的应用。公司目前致力于智能空间，社区类应用，管理类应用、工具类应用的研发与销售。"/>
+    <meta name="keywords" content="玻索，物联，APP，智能网关，智能化解决方案，苏州玻索物联科技有限公司，云居，cloudwaller，boosal"/>
+    <meta name="author" content="玻索物联"/><!-- zhiwen.ge -->
+    <link rel="shortcut icon" href="../WebRoot/images/favicon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"><!-- bootstrap -->
+    <link rel="stylesheet" href="css/common.css"><!-- 通用样式 -->
+    <link rel="stylesheet" href="css/mainStyle.css"><!-- 主页面样式 -->
+    <link rel="stylesheet" href="css/main-header.css"><!-- 页面通用样式 -->
+    <link rel="stylesheet" href="css/responA.css">
+    <link rel="stylesheet" href="css/resopnB.css">
+    <link rel="stylesheet" href="css/responC.css">
+    <link rel="stylesheet" href="swiper-4.4.1/swiper-4.4.1/dist/css/swiper.min.css"><!-- swiper轮播图 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><!-- font-awesome图标库在线CDN -->
+    <!-- script -->
+    <script src="swiper-4.4.1/swiper-4.4.1/dist/js/swiper.min.js"></script><!-- swiper-4轮播图 -->
+                            <!-- 轮播图官网 https://www.swiper.com.cn/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery在线CDN -->
+    <script>
+        $(function(){
+            var navH = $('#top').offset().top;
+            $(window).scroll(function(){            //滚动条事件
+                var scroH = $(this).scrollTop();    //获取滚动条的滑动距离 滚动条事件会一直执行所以不宜直接在内使用animate函数（animation-delay）
+                if (scroH > 0){     
+                    $('#goTop').removeClass('one').css('opacity','1').addClass('two');
+                } 
+                else {
+                    $('#goTop').removeClass('two four three').addClass('one').css('opacity','0');
+                }
+            });
+            $('#goTop').mouseover(function(){
+                $("#goTop").removeClass('four').addClass('three')
+            });
+            $('#goTop').mouseout(function(){
+                $("#goTop").removeClass('three').addClass('four')
+            });
+            /*锚点动画*/
+            $("#goTop").click(function(){
+                $('html,body').animate({
+                    scrollTop: '0px'
+                },500);
+            });
+            /*公司宣传册*/
+            var temp; //页面当前所处id
+            $(".left-button").on('click',function(event){
+                event.stopPropagation();
+                Array.prototype.forEach.call($(".brochure-item"),function(item){
+                    if(item.style.display == 'block'){
+                        temp = item.dataset.id >= 1 ? Number(item.dataset.id) : 1;
+                    }
+                    item.style.display = 'none';
+                });
+                $($('.brochure-item')[temp-1]).css('display','block');     
+                $('.left-button,.right-button').css('display','block');
+                if (temp-1 == 0){
+                    hidetapL();
+                }
+            })
+            $(".right-button").on('click',function(event){
+                event.stopPropagation();
+                Array.prototype.forEach.call($(".brochure-item"),function(item){
+                    if(item.style.display == 'block'){
+                         temp =  item.dataset.id <= 15 ? Number(item.dataset.id) : $(".brochure-item").length-2;
+                    }
+                    item.style.display = 'none';
+                    // if(Number(item.dataset.id) == Number(temp)+1){
+                    //     item.style.display = 'block'
+                    // }
+                });
+                $($('.brochure-item')[temp+1]).css('display','block');
+                $('.left-button,.right-button').css('display','block');
+                if(temp+1 == $(".brochure-item").length-1){
+                    hidetapR();
+                }
+            });
+            var hidetapL = () => {
+                $('.left-button').css('display','none');
+            }
+            var hidetapR = () => {
+                $('.right-button').css('display','none');
+            }
+            //阻止鼠标滚轮事件
+            var stopwheel = (e)=>{
+                e.preventDefault(0);
+            }
+            //阻止键盘keyUp、keyDown事件
+            var stopkey = (e) => {
+                if(e.key == "ArrowDown"||e.key == "ArrowUp"){
+                        e.preventDefault();
+                }
+            }
+            //显示宣传册的第几页
+            var goPage = (pageindex) =>{
+                $('#brochure').css('display','block');
+                $(".brochure-item").css('display','none');
+                $($(".brochure-item")[pageindex-1]).css('display','block');
+                $('.left-button,.right-button').css('display','block');
+                window.addEventListener("wheel",stopwheel);
+                window.addEventListener("keydown",stopkey);
+            }
+            $('.inner-button').on('click',function(){        //显示 了解更多
+                goPage(1);
+                hidetapL();
+            })          
+            $('#brochure').on('click',function(event){       //隐藏
+                event.stopPropagation(); 
+                $('#brochure').css('display','none');
+                window.removeEventListener('wheel',stopwheel);
+                window.removeEventListener('keydown',stopkey);
+            })
+            /**/
+            $(".project").on('click',function(event){
+                event.stopPropagation();
+                goPage(Number(this.dataset.id));
+            })
+        });
+    </script>
+</head>
+<body class="no-class">
+    <!--  onmousewheel="return false; -->
+    <div id="top"></div><!-- 锚点 -->
+    <div id="header" class="header_title"><!-- 头部 -->
+        <div id="myheader" class="container">
+            <a href="javascript:void(0);"><img src="http://pic.boosal.com/boosal_.png" alt="Boosal Logo" id="logo_img"></a>
+            <div id="contact">
+                <img src="images/hotline@2x.png" alt="服务热线" id="contact_img">
+                <div id="contact_number">
+                    <p>服务热线</p>
+                    <p><a href="tel:15952410102">159-5241-0102</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper" style="width:100%">
+            <div class="swiper-slide"><img src="images/banner_1@2x.png" alt="lunbo1" style="width:100%;"/></div>
+            <div class="swiper-slide"><img src="images/banner_2@2x.png" alt="lunbo2" style="width:100%;"/></div>
+            <div class="swiper-slide"><img src="images/banner_3@2x.png" alt="lunbo3" style="width:100%;"/></div>
+        </div>
+        <!-- 分页器 -->
+        <div class="swiper-pagination"></div>
+        <!-- 导航按钮 -->
+        <div class="swiper-button-prev"></div><!--左箭头-->
+        <div class="swiper-button-next"></div><!--右箭头-->
+    </div>
+    <!--  -->
+    <div id="body">
+        <div id="group-list-1">
+            <div id="inner-container" class="container">
+                <div class="En-title"><span>PRODUCT</span><span>SOLUTION</span></div>
+                <p class="inner-description"><span>多元化的解决方案</span><span>满足您更多的需求</span></p>
+                <div class="group-solution">
+                    <div class="group-solution-1">
+                        <div class="inner-container">
+                            <img src="images/soft_hardware@2x.png" alt="img12">
+                            <div class="words">
+                                <p>物联网软硬件一体化方案</p>
+                                <div style="width:100%;text-align:left">
+                                <p>通过各类传感器、开关器件、电机、通信模块等组件研发，配合定制化的智能物联网设备通信管理平台形成一体化的解决方案。</p>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="group-solution-2">
+                        <div class="inner-container">
+                            <img src="images/hardware@2x.png" alt="img12">
+                            <div class="words">
+                                <p>硬件设计开发一体化方案</p>
+                                <div style="width:100%;text-align:left">
+                                <p>通过基于RFID、GPRS、蓝牙等无线通信技术，配合塑料、钣金外壳、PCB、PCBA板、及功能件的开发设计形成一体化的硬件解决方案。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-solution-3">
+                        <div class="inner-container">
+                            <img src="images/case1@2x.png" alt="img12">
+                            <div class="words">
+                                <p>大型软件平台解决方案</p>
+                                <div style="width:100%;text-align:left">
+                                <p>通过云计算、大数据、互联网搭建数据分析管理平台、大型商城系统、ERP、CRM等，实现高负载和海量数据处理能力的大型软件解决方案。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-solution-4">
+                        <div class="inner-container">
+                            <img src="images/lightweight_software@2x.png" alt="img12">
+                            <div class="words">
+                                <p>轻量化软件平台解决方案</p>
+                                <div style="width:100%;text-align:left">
+                                <p>通过移动互联网、云服务器、数据库等进行APP、微信小程序、支付宝小程序、网站、公众号等高效的软件平台解决方案。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-button"><a href="javascript:void(0);"><img src="./images/know_more@2x.png" alt=""></a></div>
+            </div>
+        </div>
+        <div id="group-list-2">
+            <div id="inner-container2" class="container">
+                <div class="En-title"><span>SOME</span><span>PROJECTS</span></div>
+                <p class="inner-description"><span>部分经典案例向您展示我们的实力</span><span>先了解再合作更好满足您的需求</span></p>
+                <div class="group-project">
+                    <div class="group-project-1 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0);" class="project" data-id="5"><img src="./images/case1@2x.png" alt="img1"></a> 
+                            <div class="word">
+                                <p><span>城市交通大数据收集与分析平台</span><span><a href="javascript:void(0);" class="project" data-id="5">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-2 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0);" class="project" data-id="7"><img src="./images/case2@2x.png" alt="img2"></a>
+                            <div class="word">
+                                <p><span>江苏优卡充智能充电桩系统</span><span><a href="javascript:void(0);" class="project" data-id="7">查看案例></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-3 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0);" class="project" data-id="10"><img src="./images/case3@2x.png" alt="img3"></a>
+                            <div class="word">
+                                <p><span>浙江凯立特医疗血糖监测系统</span><span><a href="javascript:void(0);" class="project" data-id="10">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-4 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0);" class="project" data-id="10"><img src="./images/case4@2x.png" alt="img4"></a>
+                            <div class="word">
+                                <p><span>江苏南大广电产品定位系统</span><span><a href="javascript:void(0);" class="project" data-id="10">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-5 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="11"><img src="./images/case5@2x.png" alt="img5"></a>
+                            <div class="word">
+                                <p><span>艾尼尔智能电子站牌</span><span><a href="javascript:void(0);" class="project" data-id="11">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-6 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="12"><img src="./images/case6@2x.png" alt="img6"></a>
+                            <div class="word">
+                                <p><span>无锡玖一宏创自助餐饮平台</span><span><a href="javascript:void(0);" class="project" data-id="12">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-7 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="11"><img src="./images/case7@2x.png" alt="img7"></a>
+                            <div class="word">
+                                <p><span>灰兔智能景区旅游宝</span><span><a href="javascript:void(0);" class="project" data-id="11">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-8 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="8"><img src="./images/case8@2x.png" alt="img8"></a>
+                            <div class="word">
+                                <p><span>苏州海星宝无人智能新零售系统</span><span><a href="javascript:void(0);" class="project" data-id="8">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-9 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="13"><img src="./images/case9@2x.png" alt="img9"></a>
+                            <div class="word">
+                                <p><span>恒左体育篮盟APP</span><span><a href="javascript:void(0);" class="project" data-id="13">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-10 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0);" class="project" data-id="13"><img src="./images/case10@2x.png" alt="img10"></a>
+                            <div class="word">
+                                <p><span>广汇汽车服务类APP</span><span><a href="javascript:void(0);" class="project" data-id="13">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-11 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="9"><img src="./images/case11@2x.png" alt="img11"></a>
+                            <div class="word">
+                                <p><span>玻索物联智能家居系统</span><span><a href="javascript:void(0);" class="project" data-id="9">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-project-12 agroup">
+                        <div class="inner-container">
+                            <a href="javascript:void(0)" class="project" data-id="6"><img src="./images/case12@2x.png" alt="img12"></a>
+                            <div class="word">
+                                <p><span>上海早糯小班充电</span><span><a href="javascript:void(0);" class="project" data-id="6">查看案例>></a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-button"><a href="javascript:void(0);"><img src="./images/know_more@2x.png" alt=""></a></div>
+            </div>
+        </div>
+        <div id="group-list-3">
+            <div class="inner-contain container">
+                <div class="En-title"><span>COOPERATIVE</span><span>PARTNER</span></div>
+                <p class="inner-description"><span>我的合作伙伴</span></p>
+                <div class="group-partner">
+                    <div class="group-partner-1 item">
+                        <img src="./images/partner1@2x.png" alt="img1">
+                        <p>法国Keyrus集团</p>
+                    </div>
+                    <div class="group-partner-2 item">
+                        <img src="./images/partner2@2x.png" alt="img2">
+                        <p>苏州金脑袋智能系统工程有限公司</p>
+                    </div>
+                    <div class="group-partner-3 item">
+                        <img src="./images/partner3@2x.png" alt="img3">
+                        <p>广汇汽车服务股份公司</p>
+                    </div>
+                    <div class="group-partner-4 item">
+                        <img src="./images/partner4@2x.png" alt="img4">
+                        <p>杭州菜小生科技有限公司</p>
+                    </div>
+                    <div class="group-partner-5 item">
+                        <img src="./images/partner5@2x.png" alt="img5">
+                        <p>苏州海星宝智能科技有限公司</p>
+                    </div>
+                    <div class="group-partner-6 item">
+                        <img src="./images/partner6@2x.png" alt="img6">
+                        <p>江苏优卡充物联网有限公司</p>
+                    </div>                
+                    <div class="group-partner-7 item">
+                        <img src="./images/partner7@2x.png" alt="img7">
+                        <p>江苏南大光电材料股份有限公司</p>
+                    </div>
+                    <div class="group-partner-8 item">
+                        <img src="./images/partner8@2x.png" alt="img8">
+                        <p>江苏艾尼尔建设集团有限公司</p>
+                    </div>
+                    <div class="group-partner-9 item">
+                        <img src="./images/partner9@2x.png" alt="img9" style="margin-top: 30px;">
+                        <p>中国科学院苏州生物医学工程技术研究所</p>
+                    </div>
+                    <div class="group-partner-10 item">
+                        <img src="./images/partner10@2x.png" alt="img10">
+                        <p>交通运输部科学研究院</p>
+                    </div>
+                    <div class="group-partner-11 item">
+                        <img src="./images/partner11@2x.png" alt="img11">
+                        <p>法国aldes集团</p>
+                    </div>
+                    <div class="group-partner-12 item">
+                        <img src="./images/partner12@2x.png" alt="img12">
+                        <p>恒左体育</p>
+                    </div>
+                </div>
+                <div class="inner-button"><a href="javascript:void(0);"><img src="./images/know_more@2x.png" alt=""></a></div>
+            </div>
+        </div>
+        <div id="group-list-4">
+            <div class="inner-contain container">
+                <div class="En-title"><span>ABOUT</span><span>US</span></div>
+                <p class="inner-description"><span>玻索物联是一家善于物联网技术及软件平台技术研发的公司，专注于智能化，物联网，平台建设，数据分析等相关领域的业务。</span><span></span></p>
+                <div class="inner-content">
+                    <div class="inner-description-img">
+                        <img src="./images/about_us_computer@2x.png" alt="ABOUT_US" style="width: 100%">
+                    </div>
+                    <div class="right-sider">
+                        <div class="article">
+                            <img src="./images/software_@2x.png" alt="img1" class="small-img">
+                            <div class="function">
+                                <div class="title">软件开发</div>
+                                <ul>
+                                    <li>客户端<div><p>擅长于大型商场，物联网控制，社交，工具类的APP、微信公众号，小程序等开发</p></div></li>
+                                    <li>软件平台开发<div><p>擅长于数据处理及分析平台，业务管理平台，工具类平台开发</p></div></li>
+                                    <li>物联网软件开发<div><p>擅长于基于智能物联网设备通信管理平台开发</p></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <img src="./images/hardware_@2x.png" alt="img2" class="small-img">
+                            <div class="function">
+                                <div class="title">硬件开发</div>
+                                <ul>
+                                    <li>工业与机械设计<div><p>擅长于塑料、钣金外壳及功能件设计</p></div></li>
+                                    <li>硬件电路与嵌入式设计<div><p>擅长于基于REID，GPRS/3G/4G，WiFi，蓝牙等无线通信技术设备的研发；擅长于各类传感器，开关类器件，电机等组件的应用开发</p></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <img src="./images/operate_@2x.png" alt="img3" class="small-img">
+                            <div class="function">
+                                <div class="title">产品生产出货</div>
+                                <p>擅长于建立各类物料、OEM供应链，形成新产品出货能力</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-button"><a href="javascript:void(0);"><img src="./images/know_more@2x.png" alt=""></a></div>
+            </div>
+        </div>
+        <div id="group-list-5">
+            <div class="inner-contain container">
+                <div id="map-img">
+                    <img src="./images/map@2x.png" alt="地理位置" style="width: 100%">
+                </div>
+                <div id="contact-style">
+                    <div id="contactUs">
+                        <img src="./images/contactUs@2x.png" alt="联系我们" class="address_img" style="width: 100%">
+                    </div>
+                    <div class="list-1 list">
+                        <img src="./images/location@2x.png" alt="location">
+                        <p>苏州市工业园区仁爱路99号西交科创园D1-601</p>
+                    </div>
+                    <div class="list-2 list">
+                        <img src="./images/tel@2x.png" alt="tel">
+                        <p>15952410102</p>
+                    </div>
+                    <div class="list-3 list">
+                        <img src="./images/mail@2x.png" alt="mail">
+                        <p>sales@boosal.com</p>
+                    </div>
+                    <div class="list-4 list">
+                        <img src="./images/user@2x.png" alt="user">
+                        <p>吴先生</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-pic">
+            <img src="./images/bottom@2x.png" alt="底背景" style="width:100%">
+        </div>
+        <div id="information">
+            <p>©2018 Boosal IOT Co., Ltd. All rights reserved.  |<a href="http://www.miitbeian.gov.cn" target="_blank" style="text-decoration: none;">苏ICP备15032737号</a></p>
+        </div>
+    </div>
+    <!-- 公司宣传册展示 -->
+    <div id="brochure" style="display: none;">
+        <div class="left-button" style="display: block" ></div>
+        <div id="content">
+            <div class="brochure-item" style="display: block" data-id="0"><img src="./images/boosal_1.jpg" alt="p1" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="1"><img src="./images/boosal_2.jpg" alt="p2" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="2"><img src="./images/boosal_3.jpg" alt="p3" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="3"><img src="./images/boosal_4.jpg" alt="p4" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="4"><img src="./images/boosal_5.jpg" alt="p5" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="5"><img src="./images/boosal_6.jpg" alt="p6" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="6"><img src="./images/boosal_7.jpg" alt="p7" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="7"><img src="./images/boosal_8.jpg" alt="p8" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="8"><img src="./images/boosal_9.jpg" alt="p9" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="9"><img src="./images/boosal_10.jpg" alt="p10" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="10"><img src="./images/boosal_11.jpg" alt="p11" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="11"><img src="./images/boosal_12.jpg" alt="p12" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="12"><img src="./images/boosal_13.jpg" alt="p13" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="13"><img src="./images/boosal_14.jpg" alt="p14" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="14"><img src="./images/boosal_15.jpg" alt="p15" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="15"><img src="./images/boosal_16.jpg" alt="p16" style="width: 100%;height: auto"></div>
+            <div class="brochure-item" style="display: none" data-id="16"><img src="./images/boosal_17.jpg" alt="p17" style="width: 100%;height: auto"></div>
+        </div>
+        <div class="right-button" style="display: block"></div>
+    </div>
+    <!-- 悬浮的向上按钮 -->
+        <div id="goTop" style="opacity: 0;">
+            <a href="javascript:void(0)">
+                <div class="f1"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+                <div class="f2">回到顶部</div>
+            </a>
+        </div>
+    <!--  -->
+    <!-- swiper-4轮播图 -->
+    <script> 
+        var mySwiper = new Swiper('.swiper-container',{
+            direction: 'horizontal',
+            width: window.innerWidth,
+            
+            loop: true,
+            autoplay: true,
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',  
+            },
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
+    </script>
+</body>
+</html>
